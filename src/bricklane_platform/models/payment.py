@@ -15,7 +15,7 @@ class Payment(object):
     card_id = None
     bank_account_id = None
 
-    def __init__(self, data=None, source):
+    def __init__(self, source, data=None):
 
         if not data:
             return
@@ -27,10 +27,11 @@ class Payment(object):
         self.fee = total_amount * PAYMENT_FEE_RATE
         self.amount = total_amount - self.fee
 
-        card = Card()
-        card.card_id = int(data["card_id"])
-        card.status = data["card_status"]
-        self.card = card
+        if source == "card":
+            card = Card()
+            card.card_id = int(data["card_id"])
+            card.status = data["card_status"]
+            self.card = card
 
     def is_successful(self):
         return self.card.status == "processed"
