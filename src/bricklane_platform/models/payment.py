@@ -17,7 +17,7 @@ class Payment(object):
     bank_account_id = None
     payment_successful = False
 
-    def __init__(self, source, data=None):
+    def __init__(self, source="card", data=None):
 
         if not data:
             return
