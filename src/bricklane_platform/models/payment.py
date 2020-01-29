@@ -13,8 +13,9 @@ class Payment(object):
     amount = None
     fee = None
     card_id = None
+    bank_account_id = None
 
-    def __init__(self, data=None):
+    def __init__(self, data=None, source):
 
         if not data:
             return
