@@ -26,7 +26,7 @@ class TestPayment(unittest.TestCase):
             "date": "2019-02-01",
         }
 
-        payment = Payment(data)
+        payment = Payment("card",data)
 
         self.assertEqual(payment.customer_id, 123)
         self.assertEqual(payment.date, datetime(2019, 2, 1))
