@@ -40,6 +40,8 @@ class Payment(object):
             bank_account.bank_account_id = int(data["bank_account_id"])
             self.bank_account = bank_account
             self.payment_successful = True
+        else:
+            raise ValueError('Unsupported payment method')
 
     def is_successful(self):
         return self.payment_successful
