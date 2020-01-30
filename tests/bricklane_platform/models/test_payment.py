@@ -78,3 +78,13 @@ class TestPayment(unittest.TestCase):
         payment = Payment("card", data)
 
         self.assertFalse(payment.is_successful())
+
+    def test_is_successful_bank_payment(self):
+        data = {
+            "amount": "2000",
+            "bank_account_id": "12345",
+            "customer_id": "123",
+            "date": "2019-02-01"
+        }
+        payment = Payment("bank", data)
+        self.assertTrue(payment.is_successful())
