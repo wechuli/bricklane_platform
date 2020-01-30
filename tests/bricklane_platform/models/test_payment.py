@@ -26,7 +26,7 @@ class TestPayment(unittest.TestCase):
             "date": "2019-02-01",
         }
 
-        payment = Payment("card",data)
+        payment = Payment("card", data)
 
         self.assertEqual(payment.customer_id, 123)
         self.assertEqual(payment.date, datetime(2019, 2, 1))
@@ -40,25 +40,41 @@ class TestPayment(unittest.TestCase):
         self.assertEqual(card.status, "processed")
 
     def test_is_successful(self):
-        card = Card()
-        card.status = "processed"
-        payment = Payment()
-        payment.card = card
 
+        data = {
+            "amount": "2000",
+            "card_id": "45",
+            "card_status": "processed",
+            "customer_id": "123",
+            "date": "2019-02-01",
+        }
+        payment = Payment("card", data)
         self.assertTrue(payment.is_successful())
 
     def test_is_successful_declined(self):
-        card = Card()
-        card.status = "declined"
-        payment = Payment()
-        payment.card = card
+
+        data = {
+            "amount": "2000",
+            "card_id": "45",
+            "card_status": "declined",
+            "customer_id": "123",
+            "date": "2019-02-01",
+        }
+
+        payment = Payment("card", data)
 
         self.assertFalse(payment.is_successful())
 
     def test_is_successful_errored(self):
-        card = Card()
-        card.status = "errored"
-        payment = Payment()
-        payment.card = card
+
+        data = {
+            "amount": "2000",
+            "card_id": "45",
+            "card_status": "errored",
+            "customer_id": "123",
+            "date": "2019-02-01",
+        }
+
+        payment = Payment("card", data)
 
         self.assertFalse(payment.is_successful())
